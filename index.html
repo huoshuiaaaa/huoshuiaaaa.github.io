@@ -1,31 +1,42 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
-    <title>我的个人网站</title>
-    <!-- 简单美化样式，可选 -->
+    <title>My Personal Website</title>
+    <!-- 适配英文的基础样式，保留易读性 -->
     <style>
         body {
-            font-family: Arial, 微软雅黑;
+            font-family: 'Arial', sans-serif; /* 英文首选无衬线字体 */
             max-width: 800px;
             margin: 50px auto;
             padding: 0 20px;
+            line-height: 1.7; /* 英文行高略高更易读 */
         }
         h1 {
             color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
         }
         .intro {
-            line-height: 1.6;
             color: #34495e;
+            font-size: 16px;
+        }
+        .contact {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f5f7fa;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <h1>你好，我是 [TOMMY]</h1>
+    <h1>Hi, I'm [GU ZITENG]</h1> 
     <div class="intro">
-        <p>这是我用 GitHub Pages 搭建的个人网站 😊</p>
-        <p>📌 关于我：[]</p>
-        <p>📧 联系方式：[1963193402@qq.com</p>
+        <p>This is my personal website built with GitHub Pages 😊</p>
+   
+        <div class="contact">
+            <strong>📧 Contact Me:</strong> [Your email address1963193402@qq.com]
+        </div>
     </div>
 </body>
 </html>
