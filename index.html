@@ -1,42 +1,286 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>My Personal Website</title>
-
-    <style>
-        body {
-            font-family: 'Arial', sans-serif; 
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 0 20px;
-            line-height: 1.7; 
-        }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        .intro {
-            color: #34495e;
-            font-size: 16px;
-        }
-        .contact {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f5f7fa;
-            border-radius: 5px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>guziteng | 全栈与光影</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 字体 & 图标 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #00ffc8;
+      --bg: #0a0a0a;
+      --card: rgba(255, 255, 255, 0.04);
+      --text: #e5e5e5;
+      --gray: #777;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    /* 导航 */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 1000;
+      padding: 1rem 2rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+    }
+    /* Hero */
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+      background: radial-gradient(circle at 30% 20%, #1d2b64 0%, #0a0a0a 70%);
+    }
+    header h1 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 600;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #fff 40%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+    header p {
+      font-size: 1.25rem;
+      color: var(--gray);
+      max-width: 600px;
+    }
+    .btn-light {
+      margin-top: 2.5rem;
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border: 1px solid var(--primary);
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .btn-light:hover {
+      background: var(--primary);
+      color: #000;
+    }
+    /* Section */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      width: 60px;
+      height: 4px;
+      background: var(--primary);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -10px;
+      border-radius: 2px;
+    }
+    /* Grid */
+    .grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 255, 200, 0.1);
+    }
+    .card h3 {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    /* Timeline */
+    .timeline {
+      border-left: 2px solid var(--primary);
+      padding-left: 2rem;
+      margin-top: 2rem;
+    }
+    .timeline li {
+      list-style: none;
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .timeline li::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      background: var(--primary);
+      border-radius: 50%;
+      position: absolute;
+      left: -8px;
+      top: 6px;
+    }
+    /* Contact */
+    #contact .grid {
+      text-align: center;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+    /* 响应式 */
+    @media (max-width: 600px) {
+      nav ul {
+        gap: 1rem;
+      }
+      header h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Hi, I'm [GU ZITENG]</h1> 
-    <div class="intro">
-        <p>This is my personal website built with GitHub Pages 😊</p>
-   
-        <div class="contact">
-            <strong>📧 Contact Me:</strong> [Your email address1963193402@qq.com]
-        </div>
+  <!-- 导航 -->
+  <nav>
+    <ul>
+      <li><a href="#about">关于</a></li>
+      <li><a href="#skills">技能</a></li>
+      <li><a href="#timeline">历程</a></li>
+      <li><a href="#posts">文章</a></li>
+      <li><a href="#contact">联系</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <header>
+    <h1>guziteng</h1>
+    <p>全栈工程师 · 云原生信徒 · 胶片暗房手工放大爱好者</p>
+    <a href="#about" class="btn-light">探索更多</a>
+  </header>
+
+  <!-- About -->
+  <section id="about">
+    <h2 class="section-title">关于我</h2>
+    <div class="grid">
+      <div class="card">
+        <h3><i class="fas fa-code"></i> 技术栈</h3>
+        <ul>
+          <li>语言：Go / Python / Rust</li>
+          <li>云原生：Kubernetes、Istio、Helm</li>
+          <li>DevOps：GitHub Actions、Argo CD、Terraform</li>
+          <li>数据库：PostgreSQL、Redis、ETCD</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-camera"></i> 摄影</h3>
+        <p>拥有独立暗房，擅长 135 & 120 胶片手工放大。近期把冲洗温度控制做成了 Raspberry Pi 开源项目。</p>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-book"></i> 正在学习</h3>
+        <ul>
+          <li>eBPF 可观测性</li>
+          <li>Distributed SQL 引擎</li>
+          <li>暗房自动化 PID 温控</li>
+        </ul>
+      </div>
     </div>
+  </section>
+
+  <!-- Timeline -->
+  <section id="timeline">
+    <h2 class="section-title">历程</h2>
+    <ul class="timeline">
+      <li><strong>2026.01</strong> 用 GitHub Pages + Cloudflare 搭建本站点，并开源模板</li>
+      <li><strong>2025.12</strong> 为 Kubernetes 社区提交首个 PR（kubectl 插件管理）</li>
+      <li><strong>2025.10</strong> 完成 100% 暗房手工放大 135 & 120 各一套，扫描数字化</li>
+      <li><strong>2025.07</strong> 获得 CKA 认证，开始维护公司 K8s 培训手册</li>
+    </ul>
+  </section>
+
+  <!-- Blog Preview -->
+  <section id="posts">
+    <h2 class="section-title">最近文章</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>用 eBPF 追踪 Kubernetes Service 流量</h3>
+        <p>基于 Cilium 与 bpftrace 定位 ClusterIP 性能瓶颈，并给出 Grafana 模板。</p>
+        <small>2026-01-10 · 15 min read</small>
+      </div>
+      <div class="card">
+        <h3>胶片暗房自动化：用 Raspberry Pi 控制冲洗温度</h3>
+        <p>开源硬件电路 + Python PID 脚本，让药水温差保持在 ±0.2°C。</p>
+        <small>2026-01-05 · 8 min read</small>
+      </div>
+      <div class="card">
+        <h3>GitHub Actions 安全最佳实践</h3>
+        <p>从 OIDC、受限令牌到可复用工作流，一份可落地的 Checklist。</p>
+        <small>2025-12-28 · 12 min read</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="section-title">联系我</h2>
+    <div class="grid">
+      <div class="card">
+        <h3><i class="fab fa-github"></i> GitHub</h3>
+        <p><a href="https://github.com/guziteng" target="_blank">github.com/guziteng</a></p>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-envelope"></i> 邮箱</h3>
+        <p><a href="mailto:guziteng@example.com">guziteng@example.com</a></p>
+      </div>
+      <div class="card">
+        <h3><i class="fab fa-twitter"></i> Twitter</h3>
+        <p><a href="https://twitter.com/guziteng" target="_blank">@guziteng</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2026 guziteng · Built with <a href="https://pages.github.com" target="_blank">GitHub Pages</a>
+  </footer>
 </body>
 </html>
